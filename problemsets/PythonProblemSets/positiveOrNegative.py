@@ -11,6 +11,8 @@ if unknown_number>0:
 			print(unknown_number, "is larger than 50 and divisible by 3")
 		else:
 			print(unknown_number, "is bigger than 50")
+	elif unknown_number == 50:
+			print(unknown_number, "is even and equal to 50")
 	else:
 		print(unknown_number, "is less than 50")
 # modulo tests if a number is even.
