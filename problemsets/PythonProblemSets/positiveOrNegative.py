@@ -3,6 +3,10 @@ import sys
 unknown_number = int(sys.argv[1])
 if unknown_number>0:
 	print(unknown_number, "is positive")
+	if unknown_number > 50:
+		print(unknown_number, "is bigger than 50")
+	else:
+		print(unknown_number, "is less than 50")
 elif unknown_number == 0:
 	print("equals 0")
 else:
