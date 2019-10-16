@@ -1,0 +1,69 @@
+# list files in the bin directory   
+ 3  cd /bin/
+    4  ls
+    5  man ls
+   10  ls -lt | head
+# list the date, show that you can link functions and get time to complete them
+   11  date
+   12  man sleep
+   13  date ; sleep 2 ; date 
+   14  man curl
+   15  cd ~ 
+   16  man curl
+# download data from a website method 1:
+   17  curl -O https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/cuffdiff.txt
+# find a character in the file and save it to another file
+# this finds all lines with that character and saves them to another file   
+21  grep Chr7  cuffdiff.txt > fav_chr_cuffdiff.txt
+   22  head cuffdiff.txt
+   23  head fav_chr_cuffdiff.txt
+# show the file
+   24  cat blablsbla.txt
+# save the errors to another file
+   25  cat blablbls.txt 2> errors.txt
+   26  cat blablbls.txt > errors2.txt
+# save the output to one file and the errors to another   
+   33  cat fav_chr_cuffdiff.txt blablabla.file 1> out.txt 2> err.txt
+# how many users in one directory up   
+45  cd Users
+   46  ls
+   47  ~
+# where are you now?   
+56  pwd
+# make a directory and go there   
+64  mkdir problemsets
+   65  cd problemsets
+   66  ls
+# another way to get files from the web
+   67  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/sequences.nt.fa
+   68  ls
+# how many lines inthe file?
+   69  wc -lc sequences.nt.fa 
+   70  man head
+   74  man tail
+# get the last three lines and the first 4 lines
+   75  tail -n 3  sequences.nt.fa 
+   76  head -n 4 sequences.nt.fa 
+# sequences deliminated with >
+# remember to use quotes: ">" otherwise you will remove all data from file
+# find the number of sequences in the file   
+77  man grep
+   86  grep -c '>' sequences.nt.fa 
+# rename:
+   87  mv sequences.nt.fa cancer_genes.fasta
+   88  ls
+# get another file and play with sort 
+  89  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/cuffdiff.txt
+   94  man sort
+# sort by column 10
+  100  sort cuffdiff.txt -k 10
+# sort and rename as a different file
+# then show head of that file
+  101* sort cuffdiff.txt -k 10 -o sorted.cuffdiff.txt | head
+# show only the first 100 lines of the sorted file
+  105  head -n 100 sorted.cuffdiff.txt > top100.sorted.diffcuff.txt
+# print only the first column
+  107  head top100.sorted.diffcuff.txt 
+  108  cut -f 1 top100.sorted.diffcuff.txt  >differentially.expressed.genes.txt
+# save the history to a file to keep your work.  
+  111  history >UnixBasicsProblemSet1.txt
