@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import sys
-
+short_sequence = "TTT"
 dna = 'GTACCTTGATTTCGTATTCTGAGAGGCTGCTGCTTAGCGGTAGCCCCTTGGTTTCCGTGGCAACGGAAAA'
-if 'ATG' in dna:
-	print("ATG is present")
+if short_sequence in dna:
+	print(short_sequence + " is present")
 else:
-	print("ATG is not found")
+	print(short_sequence + " is not found")
 
