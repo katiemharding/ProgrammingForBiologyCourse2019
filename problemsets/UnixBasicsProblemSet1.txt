@@ -1,111 +1,69 @@
-    1  cd bin
-    2  cd/bin/
-    3  cd /bin/
+# list files in the bin directory   
+ 3  cd /bin/
     4  ls
     5  man ls
-    6  ls -l
-    7  ls -F
-    8  ls -lt
-    9  man ls
    10  ls -lt | head
+# list the date, show that you can link functions and get time to complete them
    11  date
    12  man sleep
    13  date ; sleep 2 ; date 
    14  man curl
    15  cd ~ 
    16  man curl
+# download data from a website method 1:
    17  curl -O https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/cuffdiff.txt
-   18  ls
-   19  grep Chr9 cutdiff.txt
-   20  grep Chr9 cuffdiff.txt
-   21  grep Chr7  cuffdiff.txt > fav_chr_cuffdiff.txt
+# find a character in the file and save it to another file
+# this finds all lines with that character and saves them to another file   
+21  grep Chr7  cuffdiff.txt > fav_chr_cuffdiff.txt
    22  head cuffdiff.txt
    23  head fav_chr_cuffdiff.txt
+# show the file
    24  cat blablsbla.txt
+# save the errors to another file
    25  cat blablbls.txt 2> errors.txt
    26  cat blablbls.txt > errors2.txt
-   27  errors2.txt
-   28  ls
-   29  head errors2.txt
-   30  head errors.txt
-   31  print  errors.txt
-   32  cat fav_chr_cuffdiff.txt blablabla.file
+# save the output to one file and the errors to another   
    33  cat fav_chr_cuffdiff.txt blablabla.file 1> out.txt 2> err.txt
-   34  tail out.txt
-   35  head err.txt
-   36  cat err.txt
-   37  path
-   38  q
-   39  cd q
-   40  cd ..
-   41  cd /
-   42  s
-   43  ls
-   44  cd/Users
-   45  cd Users
+# how many users in one directory up   
+45  cd Users
    46  ls
    47  ~
-   48  cd ~
-   49  cd ..
-   50  cd ..
-   51  cd ..
-   52  cd /Users/admin/Desktop/untitled folder
-   53  cd '/Users/admin/Desktop/untitled folder'
-   54  cd '/Users/admin/Desktop/untitled folder/Users'
-   55  cd '/Users/admin/Desktop/untitled folder/Users/kha'
-   56  pwd
-   57  ~
-   58  cd ~
-   59  pwd
-   60  cd ..
-   61  ls
-   62  cd kha
-   63  ls
-   64  mkdir problemsets
+# where are you now?   
+56  pwd
+# make a directory and go there   
+64  mkdir problemsets
    65  cd problemsets
    66  ls
+# another way to get files from the web
    67  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/sequences.nt.fa
    68  ls
+# how many lines inthe file?
    69  wc -lc sequences.nt.fa 
    70  man head
-   71  head [1] sequences.nt.fa 
-   72  tail [3] sequences.nt.fa 
-   73  tail (3) sequences.nt.fa 
    74  man tail
+# get the last three lines and the first 4 lines
    75  tail -n 3  sequences.nt.fa 
    76  head -n 4 sequences.nt.fa 
-   77  man grep
-   78  grep '<' sequences.nt.fa 
-   79  grep '<' sequences.nt.fa | wc -c
-   80  grep A sequences.nt.fa 
-   81  man grep
-   82  grep -c < sequences.nt.fa 
-   83  head sequences.nt.fa 
-   84  wc -l sequences.nt.fa 
-   85  grep -c '<' sequences.nt.fa 
+# sequences deliminated with >
+# remember to use quotes: ">" otherwise you will remove all data from file
+# find the number of sequences in the file   
+77  man grep
    86  grep -c '>' sequences.nt.fa 
+# rename:
    87  mv sequences.nt.fa cancer_genes.fasta
    88  ls
-   89  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/cuffdiff.txt
-   90  ls
-   91  q
-   92  head cuffdiff.txt 
-   93  apropos column
+# get another file and play with sort 
+  89  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/cuffdiff.txt
    94  man sort
-   95  ls
-   96  sort ca
-   97  man sort
-   98  sort cancer_genes.fasta -k 
-   99  sort cancer_genes.fasta -k 10
+# sort by column 10
   100  sort cuffdiff.txt -k 10
+# sort and rename as a different file
+# then show head of that file
   101* sort cuffdiff.txt -k 10 -o sorted.cuffdiff.txt | head
-  102  ls
-  103  man head
-  104  tail -n 3  sequences.nt.fa 
-  105  head n 100 sorted.cuffdiff.txt > top100.sorted.diffcuff.txt
-  106  ls
+# show only the first 100 lines of the sorted file
+  105  head -n 100 sorted.cuffdiff.txt > top100.sorted.diffcuff.txt
+# print only the first column
   107  head top100.sorted.diffcuff.txt 
   108  cut -f 1 top100.sorted.diffcuff.txt  >differentially.expressed.genes.txt
-  109  head differentially.expressed.genes.txt 
-  110  history
+# save the history to a file to keep your work.  
   111  history >UnixBasicsProblemSet1.txt
