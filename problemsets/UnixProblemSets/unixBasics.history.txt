@@ -1,0 +1,62 @@
+# I have already save the 
+   66  git clone https://github.com/katiemharding/ProgrammingForBiologyCourse2019.git
+# I wanted to clean up the directory by moving files to where they go  
+  149 git status
+  150  git add problemsets/UnixProblemSets/
+   151  git commit -m "getting everything organized"
+  152  git push
+  153  git status
+# this worked and removed just the file in the super directory  
+154  git rm AboutMe.py
+  155  git commit -m "testing rm"
+  156  git push
+# don't ever do this again.  It removed all the files from both git and the directory.
+# to fix the problem I needed to re clone things to a new directory and then delete the directory.
+  157  git rm problemsets/*.txt
+  158  git add problemsets/PythonProblemSets/PythonProblemSet1.txt
+  159  ls
+# this is where I noticed that all my .txt files were gone!
+  160  cd problemsets/
+  161  ls
+  162  cd PythonProblemSets/
+  163  ls
+  164  cd ..
+  165  cd UnixProblemSets/
+  171  mkdir PFB2019_KMH
+  172  ls -A
+  173  cd PFB2019_KMH/
+  174  git clone https://github.com/katiemharding/ProgrammingForBiologyCourse2019.git
+# this removes the directory.  answer yest to each file.
+  189  rm -r KMH_PFB2019/
+# now back to the problem set 
+# edit this file  
+  196  vi mysequences.txt
+# make a new directory 
+  197  mkdir fastas
+# move a file (this deleted the file in the origional location)
+  198  mv cancer_genes.fasta fastas
+  199  ls
+# move a file (this copies the file, leaving it in the origional location)
+  200  cp cuffdiff.txt fastas
+  201  ls
+  203  cd fastas
+  204  ls
+# then remove the file from the location (I removed it from the fastas location, keep labels consistent)
+  205  rm cuffdiff.txt 
+# I went back to the top directory and made the changes to git hub  
+  206  cd ../../..
+  207  git status
+  208  git rm problemsets/UnixProblemSets/cancer_genes.fasta
+  209  git add problemsets/UnixProblemSets/fastas/
+  210  git status
+  211  git commit -m "finishing up UnixProblemSets"
+  212  git push
+  213  vi never.txt
+  214  git add never
+  215  git add never.txt 
+# This might have been helpful eariler when I was struggling with the rm issue.  could have helped
+# it only works if you have not committed the files
+  216  git reset never.txt 
+  217  man rm
+  218  man cp
+  223  history > unixBasics.history.txt
