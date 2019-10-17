@@ -1,0 +1,6 @@
+syntax on
+set number
+set tabstop=4
+colorscheme vice
+set autoindent
+set sm
