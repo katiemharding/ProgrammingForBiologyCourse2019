@@ -56,4 +56,29 @@ list_copy2.append("different")
 print("oritional list", my_list, "real copy", list_copy2)
 print(" ")
 
+# 4) while loop
+print("While loop")
+count = 0
+while count<10:
+	print("count", count)
+	count +=1
+print("finished")
+
+# 5) while loop factorial
+print("factorial While")
+count =1
+answer=1
+while count<10:
+	answer = answer*(count+1)
+	count += 1
+print(count, answer)
+
+# 6) for loop
+print(" ")
+print("prob 6 for loop")
+randlist = [101,2,15,22,95,33,2,27,72,15,52]
+for rand in randlist:
+	if rand %2 == 0 :
+		print(rand)
+print("done")
 
