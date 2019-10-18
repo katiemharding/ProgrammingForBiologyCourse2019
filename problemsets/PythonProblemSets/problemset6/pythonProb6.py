@@ -32,6 +32,17 @@ with open('Python_06.seq.txt', 'r') as unk_seq:
 # on the command line type
 # python3 prob6testindividual.py > Python06_seq_dict.txt
 
+# this makes a great dictionary,  However this is not in fasta format which is
+# >Gene ID     comment (\n)
+# sequence
+# the following code resolves this
+with open('Python_06.seq.txt', 'r') as unk_seq:
+	for rawline in unk_seq:
+		line = rawline.rstrip() # remove white space at end
+		gene_id, seq = line.split() # split on white space in the middle
+		print(">", gene_id, "\treverse seq\n",seq, sep ="")
+# command line: python3 prob6testindividual.py >prob3.fasta
+
 # number 4 for this they just want total lines, average line, total characters
 total_nt = 0
 line_count = 0
