@@ -19,5 +19,7 @@ with open('Python_06.txt', 'r') as file_object, open('Python_06_uc.txt', 'w') as
 print("wrote Python_06_uc.txt")
 
 
+# prob 3 open and print reverse seq 
+# command line: wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/Python_06.seq.txt
 
 
