@@ -40,7 +40,20 @@ print(species_sort, "Sorted species")
 species_bylen = sorted(species, key = len)
 print(species_bylen, "sorted by number of characters")
 
-
-
+#3) coppy issues
+print ("  ")
+print("3 copy issues")
+my_list = ['a', 'bb', 'ccc']
+my_list2= my_list
+print(my_list, "coppy created using mylist=mylist2")
+my_list2.append("something added")
+print(my_list2, "appended list")
+print(my_list, "origional list, note the addition")
+print("another way to coppy")
+list_copy2 = my_list.copy()
+print(list_copy2, "created using my_list.copy()")
+list_copy2.append("different")
+print("oritional list", my_list, "real copy", list_copy2)
+print(" ")
 
 
