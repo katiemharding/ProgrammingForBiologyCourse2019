@@ -12,11 +12,11 @@ with open('Python_06.fastq', 'r') as unk_file:
 		# no start indicates seq
 		# + indicates sequence ID (gene_id) from before
 		# quality
-		line_count += 1
-		nt_count = len(line)
-		total_nt +=nt_count
+		line_count += 1 # add one per line
+		nt_count = len(line) # find length of line
+		total_nt +=nt_count # add lengths to get each line
 	print("line count is:", line_count)
 	print("total count is:", total_nt)
-	ave_nt_line = total_nt/line_count
+	ave_nt_line = total_nt/line_count # average is totoal nt/line
 	print("average nt per line:", ave_nt_line)
 
