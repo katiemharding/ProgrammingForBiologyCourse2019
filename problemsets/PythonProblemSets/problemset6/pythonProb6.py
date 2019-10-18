@@ -21,5 +21,15 @@ print("wrote Python_06_uc.txt")
 
 # prob 3 open and print reverse seq 
 # command line: wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/files/Python_06.seq.txt
+genes={}
+
+with open('Python_06.seq.txt', 'r') as unk_seq:
+	for rawline in unk_seq:
+		line = rawline.rstrip() # remove white space at end
+		gene_id, seq = line.split() # split on white space in the middle
+		genes[gene_id] = seq # assign to dictionary
+	print(genes)
+# on the command line type
+# python3 prob6testindividual.py > Python06_seq_dict.txt
 
 
