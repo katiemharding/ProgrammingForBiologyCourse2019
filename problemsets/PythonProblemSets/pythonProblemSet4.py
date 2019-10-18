@@ -82,3 +82,28 @@ for rand in randlist:
 		print(rand)
 print("done")
 
+print("  ")
+print("prob 7 for loop sum evens")
+sortedrand = sorted(randlist)
+sum_ev = 0
+sum_odd = 0
+for rand in sortedrand:
+	print(rand)
+	if rand %2 ==0:
+		sum_ev +=rand
+	else:
+		sum_odd +=rand
+print("sum even =", sum_ev, "\nsum odd =", sum_odd)
+
+print("prob 8, range 5")
+for num in range(5):
+	print(num)
+print('done')
+
+print("prob 9, range 5")
+myrange = [print(ran) for ran in range(5)]
+myrange
+
+
+
+	
