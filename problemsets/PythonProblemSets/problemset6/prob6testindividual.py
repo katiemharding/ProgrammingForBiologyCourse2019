@@ -8,8 +8,9 @@ with open('testhead.fasta', 'r') as unk_fasta:
 		line = rawline.rstrip() # remove white space at end
 		# line_list  = line.split(">") # split on white space in the middle
 		if line[0] == '>':
-			gene_ID =  line
-
+			gene_info  =  line
+			gene_long  = gene_info.replace('>','')
+			gene_ID = gene_long.split( '\t')[0]
 		else:
 			seq = line
 			genes[gene_ID] = seq # because the gene and seq are called outside of the for loop
