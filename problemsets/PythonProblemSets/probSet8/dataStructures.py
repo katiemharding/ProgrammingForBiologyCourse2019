@@ -19,19 +19,23 @@ try:
 				gene_long  = gene_info.replace('>','') # remove the identifer
 				gene_ID = gene_long.split( ' ')[0] # remove everything after the space
 		# note: the above returns a multi item list, one before space one after space
-				genes[gene_ID] = {} 
+				genes[gene_ID] ={}
+				genes[gene_ID]['A'] = 0
+				genes[gene_ID]['T'] = 0
+				genes[gene_ID]['C'] = 0
+				genes[gene_ID]['G'] = 0
+				genes[gene_ID]['N'] = 0
 		# the above line set an empty vlaue, and starts the next sequence
 			else:
 				for nt in line: 
-					if nt in genes[gene_ID]:
-						previous_count =  genes[gene_ID][nt]
-						new_count = previous_count +1
-						genes[gene_ID][nt] = new_count
-					else:
-						genes[gene_ID][nt] = 1
+					previous_count =  genes[gene_ID][nt]
+					new_count = previous_count +1
+					genes[gene_ID][nt] = new_count
 			# this concatinates lines until the next > symbol is found
 	print(genes)
 
+except KeyError:
+	print("some nucleotides are not A or T or G or C or N")
 except IndexError:
 	print("Please provide file Name")
 except IOError as ex:
