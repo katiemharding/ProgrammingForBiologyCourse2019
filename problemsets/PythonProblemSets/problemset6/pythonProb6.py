@@ -62,4 +62,23 @@ with open('Python_06.fastq', 'r') as unk_file:
 	print("total count is:", total_nt)
  	ave_nt_line = total_nt/line_count # average is totoal nt/line
 	print("average nt per line:", ave_nt_line)
+# 5 my first fasta parser
 
+genes = {}
+gene_ID = ""
+seq = ""
+with open('Prob3.fasta', 'r') as unk_fasta:
+	for rawline in unk_fasta:
+		line = rawline.rstrip() # remove white space at end
+     # line_list  = line.split(">") # split on white space in the middle
+ 		if line[0] == '>':
+			gene_info  =  line # now it needs cleanded up
+			gene_long  = gene_info.replace('>','') # remove the identifer
+			gene_ID = gene_long.split( '\t')[0] # remove everything after the tab
+			# note: the above returns a two item list, one before \t one after \t
+ 		else:
+	        seq = line
+			genes[gene_ID] = seq # because the gene and seq are called outside of the for loop
+      # they are availabe to fill the genes dict here
+ print(genes)
+ 19 # this is good because it loads in each line one at a time, keeping memory use low
