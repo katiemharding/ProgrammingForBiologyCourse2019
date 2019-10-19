@@ -18,10 +18,10 @@ with open(File_Name, 'r') as unk_fasta:
 			gene_info  =  line # now it needs cleanded up
 			gene_long  = gene_info.replace('>','') # remove the identifer
 			gene_ID = gene_long.split( ' ')[0] # remove everything after the space
-			genes[gene_ID] = ''
-		# note: the above returns a two item list, one before \t one after \t
+		# note: the above returns a multi item list, one before space one after space
+		genes[gene_ID] = ''
+		# the above line set an empty vlaue, and starts the next sequence
 		else:
-			
-			genes[gene_ID] +=line # because the gene and seq are called outside of the for loop
-        # they are availabe to fill the genes dict here
+			genes[gene_ID] +=line 
+			# this concatinates lines until the next > symbol is found
 print(genes)
