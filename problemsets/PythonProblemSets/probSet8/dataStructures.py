@@ -19,7 +19,7 @@ with open(File_Name, 'r') as unk_fasta:
 			gene_long  = gene_info.replace('>','') # remove the identifer
 			gene_ID = gene_long.split( ' ')[0] # remove everything after the space
 		# note: the above returns a multi item list, one before space one after space
-		genes[gene_ID] = ''
+			genes[gene_ID] = ''
 		# the above line set an empty vlaue, and starts the next sequence
 		else:
 			genes[gene_ID] +=line 
