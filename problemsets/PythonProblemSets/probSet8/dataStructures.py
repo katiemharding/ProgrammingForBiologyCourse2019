@@ -5,8 +5,13 @@ File_Name = ''
 try:
 	File_Name = sys.argv[1]
 	print("User provided file: ", File_Name)
-except:
-	print("Please provide Name")
+	if not File_Name.endswith('.fasta'):
+		raise ValueError("not a .fasta file")
+	FASTA = open(File_Name,"r")
+except IndexError:
+	print("Please provide file Name")
+except IOError as ex:
+	print(File_Name, ": Doesn't exist", ex.strerror)
 
 genes = {}
 gene_ID = None
