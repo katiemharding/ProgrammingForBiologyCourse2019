@@ -18,7 +18,7 @@ print('total number of nucleotides:', sum(geneLength))
 print('avg len:', round(sum(geneLength)/len(geneLength)))
 print('shortest len:', min(geneLength))
 print('longest len:', max(geneLength))
-print('avg GC content:', round(sum(geneGC)/len(geneLength)),2)
+print('avg GC content:', round(sum(geneGC)/len(geneLength),2))
 print('lowest GC content:', round(min(geneGC),2))
 print('highest GC content:', round(max(geneGC),2))
 
