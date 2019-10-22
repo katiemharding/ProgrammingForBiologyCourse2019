@@ -1,0 +1,74 @@
+## https://fasta.bioch.virginia.edu/mol_evol/
+
+# honey bee glutathione transferase homology from pri annotated 
+# if domain is there, it is there, if it is not there it might just not be in the database.
+a)
+# How long is the sequence?
+# 217 AA
+
+# number in this database 13144
+# scoring matix Blosum50 or BL50
+
+# gap penalities (from output)
+'''Parameters: BL50 matrix (15:-5)xS, open/ext: -10/-2
+ ktup: 2, E-join: 1 (0.448), E-opt: 0.2 (0.118), width:  16
+ Scan time:  0.230'''
+ one residue = -12 (-10+-2), two residue gap =-14 
+small numbers mean small changes, large numbers mean big change
+gap open penality everyone does it the same way, open gap is not a gap == problem for biologists
+
+What are each of the numbers after the sequence?
+len: length of gene
+opt: raw score
+bits: normalized score
+E(): expected
+
+# no 100% aphis is not in this database
+# different starding place is not the best, not the best score
+
+Gaps best vs second best
+no gaps in best one gap in best at 198
+a lot more gaps in second best
+more gaps mean more divergent farther back in time
+gap penality puts the gaps closer together
+protein world 50% id is really good.
+30% is pretty far, so lots of gaps
+
+b)
+highest scoreing non homolog
+GB_SUHVF Envelope glycoprotein B; Short=gB; G
+highest score E value is close to 1
+this database is small, very likely there are other proteins with E value greater than 5
+do a search with the closest non-homolog, and compare results.
+EF1D2 when you search elongation factor the database it does not contain more gultiothion trans genes,
+and they may have a glut thoin trans c term, pfam is using a model,
+blast may find something that is not in pfam.
+
+there is always one unrelated score.
+always one homolog that is really close but only statistically significant..  
+Worry if the score is 10, or if the highest is 0.001
+
+c)
+not there is our case
+the box is part of the best local alighment
+half of green nterminal is present, half of the blue c terminal
+change it to blosum 52 they go away
+the full domain is in the other alignments, therefore it is likely to contain the full domains.
+why are they not aligning diverged: that part has diverged even more
+blossum 62 finds things that are more closely related 
+regions with <20% are hard to match for blossum 50 and impossible for bl 62
+
+you may not see everything that is there because they are too different.
+a little too different, too divergent to show up as a match
+negative results are just we don't know
+
+2) honey bee vs blast
+very similar to what we just did
+
+3) cortactin domains isn human rat and chicken
+pfam finds and doesn't find domains.  repeated domains.  gained or lost domains due to exon shuffling
+things can be homologus by not align
+things can align but not be homologus
+
+
+
