@@ -27,7 +27,6 @@ for Length in contigLength:
 
 print('seqeunce count:', len(geneLength))
 print('total number of nucleotides:', sum(geneLength))
-print(contigLength)
 print('N50 = ', N50)
 print('L50 = ', L50)
 print('avg len:', round(sum(geneLength)/len(geneLength)))
