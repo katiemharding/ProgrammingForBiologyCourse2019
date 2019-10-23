@@ -1,14 +1,22 @@
 #! /usr/bin/env python3
 import sys
+base_file_type = sys.argv[1]
+base_number = sys.argv[2]
 
-base_file = sys.argv[1]
+
 # these files have two headers.  I will run the file twice, once with one header, once with the other
-apend_list = ['_BL50.txt', '_BP62.txt', '_VT10.txt', '_VT160.txt',
+apend_list_ss = ['_BL50.txt', '_BP62.txt', '_VT10.txt', '_VT160.txt',
 '_VT20.txt', '_VT40.txt', '_VT80.txt']
+apend_list_blast = ['_BLOSUM62.txt', '_BLOSUM80.txt', '_PAM30.txt', '_PAM70.txt'] 
 
 new_list = []
-for apend1 in apend_list:
-	new_list.append(base_file + apend1)
+if base_file_type == 'ss':
+	alist = apend_list_ss
+else:
+	alist = apend_list_blast
+
+for apend1 in alist:
+	new_list.append(base_file_type+"_rand5-"+base_number+"_v_qfo" + apend1)
 
 
 field_string = "queryid subjectid identity alignmentlength mismatches gapopens qstart qend sstart send evalue bitscore"
