@@ -84,4 +84,59 @@ samtools sort -m 1g -o SRR10178655.srt.bam SRR10178655.bam
 # index the bam file
  samtools index SRR10178655.srt.bam
 
+ # run gatk's mark duplicates
+  gatk MarkDuplicates --java-options '-Xmx1G' \
+ -MAX_FILE_HANDLES 2000 \
+ -I SRR10178655.srt.bam \
+ -O SRR10178655.srt.mdup.bam \
+ -M SRR10178655.metrics
+
+# calculate QC metrics
+ samtools stats --ref-seq Scerevisiae.fasta  SRR10178655.srt.mdup.bam >SRR10178655.stats
+ # make plots, notice how many png files are generated!
+base) info14:workshops info$ plot-bamstats -s Scerevisiae.fasta >Scerevisiae.gc
+(base) info14:workshops info$ ls
+CanuRun_20191021.log		SRR10178655.srt.bam.bai		SRR10178655_1_failed.fastq.gz	SRR10178655_2.fastq.gz		SRR10178655_2_passed.fastq.gz	Scerevisiae.fasta.bwt		adapters.fa
+SRR10178655.bam			SRR10178655.srt.mdup.bam	SRR10178655_1_fastqc		SRR10178655_2_failed.fastq.gz	Scerevisiae.dict		Scerevisiae.fasta.fai		ecoli-full
+SRR10178655.metrics		SRR10178655.stats		SRR10178655_1_fastqc.html	SRR10178655_2_fastqc		Scerevisiae.fasta		Scerevisiae.fasta.pac		ecoli-pacbio
+SRR10178655.sra			SRR10178655.summary		SRR10178655_1_fastqc.zip	SRR10178655_2_fastqc.html	Scerevisiae.fasta.amb		Scerevisiae.fasta.sa		pacbio.fastq
+SRR10178655.srt.bam		SRR10178655_1.fastq.gz		SRR10178655_1_passed.fastq.gz	SRR10178655_2_fastqc.zip	Scerevisiae.fasta.ann		Scerevisiae.gc			specieshomology
+(base) info14:workshops info$  plot-bamstats -r Scerevisiae.gc -p  SRR10178655 SRR10178655.stats
+(base) info14:workshops info$ ls
+CanuRun_20191021.log		SRR10178655-indel-cycles.gp	SRR10178655-quals-hm.png	SRR10178655.metrics		SRR10178655_1_fastqc		SRR10178655_2_passed.fastq.gz	Scerevisiae.gc
+SRR10178655-acgt-cycles.gp	SRR10178655-indel-cycles.png	SRR10178655-quals.gp		SRR10178655.sra			SRR10178655_1_fastqc.html	Scerevisiae.dict		adapters.fa
+SRR10178655-acgt-cycles.png	SRR10178655-indel-dist.gp	SRR10178655-quals.png		SRR10178655.srt.bam		SRR10178655_1_fastqc.zip	Scerevisiae.fasta		ecoli-full
+SRR10178655-coverage.gp		SRR10178655-indel-dist.png	SRR10178655-quals2.gp		SRR10178655.srt.bam.bai		SRR10178655_1_passed.fastq.gz	Scerevisiae.fasta.amb		ecoli-pacbio
+SRR10178655-coverage.png	SRR10178655-insert-size.gp	SRR10178655-quals2.png		SRR10178655.srt.mdup.bam	SRR10178655_2.fastq.gz		Scerevisiae.fasta.ann		pacbio.fastq
+SRR10178655-gc-content.gp	SRR10178655-insert-size.png	SRR10178655-quals3.gp		SRR10178655.stats		SRR10178655_2_failed.fastq.gz	Scerevisiae.fasta.bwt		specieshomology
+SRR10178655-gc-content.png	SRR10178655-mism-per-cycle.gp	SRR10178655-quals3.png		SRR10178655.summary		SRR10178655_2_fastqc		Scerevisiae.fasta.fai
+SRR10178655-gc-depth.gp		SRR10178655-mism-per-cycle.png	SRR10178655.bam			SRR10178655_1.fastq.gz		SRR10178655_2_fastqc.html	Scerevisiae.fasta.pac
+SRR10178655-gc-depth.png	SRR10178655-quals-hm.gp		SRR10178655.html		SRR10178655_1_failed.fastq.gz	SRR10178655_2_fastqc.zip	Scerevisiae.fasta.sa
+# this actally opens a html viewer to see the files
+(base) info14:workshops info$  open -a Safari.app SRR10178655.html
  
+
+What is the mode insert size of the sequencing library?
+ # there is a peak at 252 (first graph)
+What is the estimated read base-call error rate? 0.77%
+# table at the bottom
+Reads
+total:	4,670,994
+filtered:	0	(0.0%)
+non-primary:	0
+duplicated:	94,284	(2.0%)
+mapped:	4,587,437	(98.2%)
+zero MQ:	614,880	(13.4%)
+avg read length:	151
+Bases
+total:	705,320,094
+mapped:	678,644,043	(96.2%)
+error rate:	0.77%
+
+What fraction of your reads are duplicates? 2.0% also from the table above
+
+Within which base quality score range do the majority of mismatches occur?
+(HINT: see the "Mismatches per cycle" plot). Record the upper value of the
+range to use as the minimum base quality threshold for variant calling a later step.
+20>=Q>10 is biggest error.  20 is the number to save.
+
