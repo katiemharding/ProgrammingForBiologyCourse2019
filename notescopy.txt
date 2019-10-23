@@ -1,0 +1,87 @@
+  # inorder to work with fastq files
+  # you need gnuplot
+  505  brew install gnuplot
+  # download software for this tutorial and unzip
+  506  wget https://www.dropbox.com/s/zn4m0oqbasg4gal/software.tar.gz
+  507  tar -xzvf software.tar.gz
+# tell the service where to go for this software
+  510  export PATH=Users/info/software/bin:$PATH
+  # I decided to start in a new file
+  511  cd PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/
+  512  mkdir WorkShops
+  513  cd WorkShops/
+  514  mkdir NGSWorkshops
+  515  cd NGSWorkshops/
+  # get more data from the website.  Ot works better if you click the download button and copy link 
+  528  wget https://github.com/bredeson/pfb2019/raw/master/workshops/NGS/data/Scerevisiae.fasta.gz
+  529  gunzip Scerevisiae.fasta.gz 
+  530  bwa index Scerevisiae.fasta 
+  # i had to reimport the path  (do this from the right directory)
+  PWD=`pwd`
+  echo $PWD
+  export PATH=$PWD/software/bin:$PATH
+  539  export PATH=$PWD/software/bin:$PATH
+  543  cd PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/
+  545  cd WorkShops/
+  547  cd NGSWorkshops/
+  # index the genome 
+  # this creates a long list of files
+  552  bwa index Scerevisiae.fasta 
+  # this creates the fasta.fai file
+  553  samtools faidx Scerevisiae.fasta
+  554  head -3 Scerevisiae.fasta.fai
+  # this creates a dictionary
+  555  samtools dict Scerevisiae.fasta >Scerevisiae.dict
+  556  head -3 Scerevisiae.dict 
+  # now download the reads with SRR10178655
+  557  wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR101/SRR10178655/SRR10178655.sra
+  558  fastq-dump --gzip --split-files --defline-seq '@$sn/$ri' --defline-qual '+' SRR10178655.sra
+  # open the file with the FASTQ program to do QC analysis
+ fastqc --threads 2 --extract SRR10178655_1.fastq.gz SRR10178655_2.fastq.gz
+
+ 567  open -a Safari.app SRR10178655_1_fastqc.html 
+  # this website is helpful:
+#  http://bioinformatics-core-shared-training.github.io/cruk-bioinf-sschool/Day1/NGS_QC_inesdesantiago.pdf
+
+  # read pairs: none (2335497 sequences)
+  # how long? 151 sequence length
+  # Quality: Sanger / Illumina 1.9  (quality is based on the machine it was run on)
+  # google for offset
+  # I had warnings for per base sequence  The base is a little wonky for the first few base pairs, this is normal.
+  # and Per sequence GC.  This is a bacteria and has higher GC content than normal.
+  # no over represented sequences.
+
+# get the next file make sure to check that it is a file.
+ wget https://raw.githubusercontent.com/bredeson/pfb2019/master/workshops/NGS/data/adapters.fa
+  592  head adapters.fa
+#  Trimmomatic does not work with path. you have to tell it to go there directly.  also not that two files had the wrong name in the list. 
+  600  java -Xmx500m -jar ~/software/Trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33  -summary SRR10178655.summary SRR10178655_1.fastq.gz SRR10178655_2.fastq.gz  SRR10178655_1_passed.fastq.gz SRR10178655_1_failed.fastq.gz  SRR10178655_1_passed.fastq.gz SRR10178655_2_failed.fastq.gz MINLEN:100  ILLUMINACLIP:~/software/Trimmomatic-0.39/adapters/NexteraPE-PE.fa:2:30:10:2:keepBothReads
+  601  history
+  this is the output:
+  note that two errors have been fixed from the lecture notes
+
+(base) info14:workshops info$ java -Xmx500m -jar ~/software/Trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33  -summary SRR10178655.summary SRR10178655_1.fastq.gz SRR10178655_2.fastq.gz  SRR10178655_1_passed.fastq.gz SRR10178655_1_failed.fastq.gz  SRR10178655_2_passed.fastq.gz SRR10178655_2_failed.fastq.gz MINLEN:100 ILLUMINACLIP:.adapters.fa:2:30:10:2:keepBothReads
+TrimmomaticPE: Started with arguments:
+ -phred33 -summary SRR10178655.summary SRR10178655_1.fastq.gz SRR10178655_2.fastq.gz SRR10178655_1_passed.fastq.gz SRR10178655_1_failed.fastq.gz SRR10178655_2_passed.fastq.gz SRR10178655_2_failed.fastq.gz MINLEN:100 ILLUMINACLIP:.adapters.fa:2:30:10:2:keepBothReads
+Multiple cores found: Using 4 threads
+java.io.FileNotFoundException: /Users/info/PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/workshops/.adapters.fa (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:155)
+	at org.usadellab.trimmomatic.fasta.FastaParser.parse(FastaParser.java:54)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.loadSequences(IlluminaClippingTrimmer.java:110)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.makeIlluminaClippingTrimmer(IlluminaClippingTrimmer.java:71)
+	at org.usadellab.trimmomatic.trim.TrimmerFactory.makeTrimmer(TrimmerFactory.java:32)
+	at org.usadellab.trimmomatic.Trimmomatic.createTrimmers(Trimmomatic.java:59)
+	at org.usadellab.trimmomatic.TrimmomaticPE.run(TrimmomaticPE.java:552)
+	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:80)
+Input Read Pairs: 2335497 Both Surviving: 2335497 (100.00%) Forward Only Surviving: 0 (0.00%) Reverse Only Surviving: 0 (0.00%) Dropped: 0 (0.00%)
+TrimmomaticPE: Completed successfull
+# align the reads:
+bwa mem -R '@RG\tID:SRR10178655\tSM:Scerevisiae\tLB:HAMMOND01\tPL:ILLUMINA'  Scerevisiae.fasta SRR10178655_1_passed.fastq.gz SRR10178655_2_passed.fastq.gz |  samtools view -b - >SRR10178655.bam
+# sort the reads:
+samtools sort -m 1g -o SRR10178655.srt.bam SRR10178655.bam
+# index the bam file
+ samtools index SRR10178655.srt.bam
+
+ 
