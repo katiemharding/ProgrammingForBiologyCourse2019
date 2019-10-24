@@ -29,9 +29,24 @@ def Sam_file_parser(file):
 			if gene_name not in gene_dict:
 				gene_dict[gene_name] = set()
 			gene_dict[gene_name].add(read_name)
-# if not, in dictionary, then make new key value pair 
-	return gene_dict
+# if not, in dictionary, then add gene name and empty set.  then add readname to set
+	genes = list(gene_dict.keys())
+	# make a list of the keys
+	genes =  sorted(genes, key= lambda x: len(gene_dict[x], reverse =True))
+
+	for gene in genes:
+		read_set = gene_dict{gene]
+		print("{}\t{}"format(gene, len(read_set)))
+
+
+return gene_dict
 
 print(Sam_file_parser(file_name))
+
+
+
+
+
+
 print("done")
 
