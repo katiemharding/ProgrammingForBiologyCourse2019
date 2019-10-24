@@ -12,11 +12,15 @@ def seq_from_fastq(file_name):
 	for line in fh: # for line in file
 		line = line.rstrip() # remove white space
 		counter += 1 # add one to counter to get running tally of the number of lines
-		if (counter %4 == 2) # the sequence is always line 2.  
+		if (counter %4 == 2): # the sequence is always line 2.  
 		# %4 means return the remainder of count/4
 		# this means it will return the second of each record
-			sequqences.append(line)
+			sequences.append(line)
 	return(sequences)
 
-sqw_from_fastq(file_name)
+print(seq_from_fastq(file_name))
+# note that the program returns a list
+
+
+
 
