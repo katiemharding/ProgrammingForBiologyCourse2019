@@ -2,8 +2,9 @@
 
 import sys
 
-seq = "AATTGGCC"
-num = 2
+sequence = sys.argv[1]
+number = int(sys.argv[2])
+
 def cut_kmer(seq, num):
 	count = 0
 	kmer_list = []
@@ -13,6 +14,6 @@ def cut_kmer(seq, num):
 		count +=1
 	return(kmer_list)
 
-print(cut_kmer(seq, num))
+print(cut_kmer(sequence, number))
 
 
