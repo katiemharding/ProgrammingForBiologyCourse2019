@@ -17,16 +17,22 @@ print('# was run on ', now)
 
 file_name = sys.argv[1]
 
-needed_info = []
-with open(file_name, 'r') as sam_file:
-	for line in sam_file:
-		line = line.rstrip() # remove whitespace at end
-		line_list  = line.split("\t") # split on tab deliminater
-		read_name = line_list[0] # first is read name
-		gene_info = line_list[2] # third is gene info, need to divide on ^
-		gene_name = gene_info.split('^')[0] # this is only gene name, not the transcript
-		needed_info.extend([read_name, gene_name])
-print(needed_info)
+def Sam_file_parser(file):
+	gene_dict = {} 
+	with open(file_name, 'r') as sam_file:
+		for line in sam_file:
+			line = line.rstrip() # remove whitespace at end
+			line_list  = line.split("\t") # split on tab deliminater
+			read_name = line_list[0] # first is read name
+			gene_info = line_list[2] # third is gene info, need to divide on ^
+			gene_name = gene_info.split('^')[0] # this is only gene name, not the transcript
+			if gene_name not in gene_dict:
+				gene_dict[gene_name] = read_name
+			else:
+				continue
+# if not, in dictionary, then make new key value pair 
+	return gene_dict
 
+print(Sam_file_parser(file_name))
 print("done")
 
