@@ -2,6 +2,9 @@
 
 import os, sys
 
+if len(sys.argv) <1
+	print("please add a file name")
+# log run command
 
 
 ## method: seq_list_from_fastq_file(fastq_filename)
