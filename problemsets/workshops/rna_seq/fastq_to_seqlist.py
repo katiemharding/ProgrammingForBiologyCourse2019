@@ -16,7 +16,7 @@ import os, sys
 ##  returns seq_list : list of read sequences.
 ##                    ie.  ["GATCGCATAG", "CGATGCAG", ...]
     
-def seq_list_from_fastq_file(fastq_filename):
+def seq_list_from_fastq_file(file_name):
 
 	sequences  = [] #create empty list
 	fh = open(file_name) # open file
@@ -32,26 +32,22 @@ def seq_list_from_fastq_file(fastq_filename):
 
 def main():
 
-    progname = sys.argv[0]
+	progname = sys.argv[0]
     
-    usage = "\n\n\tusage: {} filename.fastq num_seqs_show\n\n\n".format(progname)
-    
-    if len(sys.argv) < 3:
-        sys.stderr.write(usage)
-        sys.exit(1)
+	usage = "\n\n\tusage: {} filename.fastq num_seqs_show\n\n\n".format(progname)
+	if len(sys.argv) < 3:
+		sys.stderr.write(usage)
+		sys.exit(1)
 
     # capture command-line arguments
-    fastq_filename = sys.argv[1]
-    num_seqs_show = int(sys.argv[2])
-
-    seq_list = seq_list_from_fastq_file(fastq_filename)
-
-    print(seq_list[0:num_seqs_show])
-
-    sys.exit(0)  # always good practice to indicate worked ok!
+	fastq_filename = sys.argv[1]
+	num_seqs_show = int(sys.argv[2])
+	seq_list = seq_list_from_fastq_file(fastq_filename)
+	print(seq_list[0:num_seqs_show])
+	sys.exit(0)  # always good practice to indicate worked ok!
 
 
 
 if __name__ == '__main__':
-    main()
+	main()
 # any script can be a drver script   
