@@ -37,6 +37,7 @@ for new in new_list:
 			first_row.append(hit_data)
 			break # this exits the if loop and leaves only the first row "selected"
 
+print('data type			', 'identity', 'alignmentlength', 'evalue' )
 for hit in first_row:
 	print('\t'.join([hit[x] for x in ('file', 'identity', 'alignmentlength', 'evalue')])) 
 	# this prints just these subdictionaries in that order
