@@ -27,9 +27,8 @@ def Sam_file_parser(file):
 			gene_info = line_list[2] # third is gene info, need to divide on ^
 			gene_name = gene_info.split('^')[0] # this is only gene name, not the transcript
 			if gene_name not in gene_dict:
-				gene_dict[gene_name] = read_name
-			else:
-				continue
+				gene_dict[gene_name] = set()
+			gene_dict[gene_name].add(read_name)
 # if not, in dictionary, then make new key value pair 
 	return gene_dict
 
