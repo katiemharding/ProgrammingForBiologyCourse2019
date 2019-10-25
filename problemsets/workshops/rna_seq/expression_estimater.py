@@ -17,7 +17,7 @@ print('# was run on ', now)
 
 file_name = sys.argv[1]
 
-def Sam_file_parser(file):
+def main():
 	gene_dict = {} 
 	with open(file_name, 'r') as sam_file:
 		for line in sam_file:
@@ -32,21 +32,14 @@ def Sam_file_parser(file):
 # if not, in dictionary, then add gene name and empty set.  then add readname to set
 	genes = list(gene_dict.keys())
 	# make a list of the keys
-	genes =  sorted(genes, key= lambda x: len(gene_dict[x], reverse =True))
+	genes =  sorted(genes, key= lambda x: len(gene_dict[x]), reverse =True)
 
 	for gene in genes:
-		read_set = gene_dict{gene]
-		print("{}\t{}"format(gene, len(read_set)))
+		read_set = gene_dict[gene]
+		print("{}\t{}".format(gene, len(read_set)))
+
+	sys.exit(0)
 
 
-return gene_dict
-
-print(Sam_file_parser(file_name))
-
-
-
-
-
-
-print("done")
-
+if __name__ == '__main__':
+	main()
