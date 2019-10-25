@@ -1,0 +1,159 @@
+  # this is from the canu analysis
+  # I just didn't want to delete it.
+  136  ls
+  137  cd Downloads/
+  138  ls
+  139  cd canu-1.8/
+  140  pwd
+  141  ls
+  142  cd /usr/local/bin
+  143  sudo ln -s /Users/info/Downloads/canu-1.8/Darwin-amd64/bin/canu
+  144  canu
+  145  which canu
+  146  which gnuplot
+  147  java --version
+  148   canu -options
+  149  cd ~
+  150  PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/workshops/
+  151  cd PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/workshops/
+  152  wget Download canu test E.coli dataset:
+  153  http://canu.readthedocs.io/en/latest/quick-start.html?highlight=25x
+  154  wget http://canu.readthedocs.io/en/latest/quick-start.html?highlight=25x
+  155  ls
+  156  cd quick-start.html\?highlight\=25x 
+  157  curl -L -o pacbio.fastq
+  158  http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_
+  159  curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq
+  160  ls
+  161  rm quick-start.html\?highlight\=25x 
+  162  head pacbio.fastq 
+  163  ls -lh
+  164  pwd
+  165  canu -p ecoli -d ecoli-pacbio genomeSize=4.8m -pacbio-raw /pacbio.fastq saveReads=true 2>CanuRun_20191021.log **to save output 
+  166  canu -p ecoli -d ecoli-pacbio genomeSize=4.8m -pacbio-raw /pacbio.fastq saveReads=true 2>CanuRun_20191021.log
+  167  canu -p ecoli -d ecoli-full genomeSize=4.8m -pacbio-raw pacbio.fastq saveReads=true 2>CanuRun_20191021.log
+  168  tail CanuRun_20191021.log 
+  169  ls
+  170  vi CanuRun_20191021.log 
+  171  len CanuRun_20191021.log 
+  172  cd ecoli-full
+  173  ls
+  174  cd ..
+  175  cd ecoli-pacbio/
+  176  ls
+  177  cd ..
+  178  ls
+  179  wc -l pacbio.fastq 
+  180  head pacbio.fastq 
+  181  grep -c '@m141013' pacbio.fastq 
+  182  ls
+  183  cd ecoli-full/
+  184  ls
+  185  cd ..
+  186  emacs CanuRun_20191021.log 
+  187  split -l 31498 pacbio.fastq 
+  188  ls
+  189  mv xaa ecoli_filtered
+  190  ls
+  191  mv ecoli_filtered ecoli_filtered_0.60.fastq
+  192  ls
+  193  wc -l ecoli_filtered_0.60.fastq 
+  194  man split
+  195  canu -p ecoli -d ecoli-full genomeSize=4.8m ecoli_filtered_0.60.fastq saveReads=true 2>CanuRun60_20191023.log
+  196  canu -p ecoli -d ecoli-full genomeSize=4.8m -pacbio-raw ecoli_filtered_0.60.fastq saveReads=true 2>CanuRun60_20191023.log
+  197  ls
+  198  tail CanuRun60_20191023.log 
+  199  cd ecoli-pacbio/
+  200  ls
+  201  ls -F
+  202  ls -A
+  203  ls -lt
+  204  cd ..
+  205  ls -lt
+  206  cd ..
+  207  cd workshops/ecoli-full/
+  208  ls -lt
+  209  canu -p ecoli -d ecoli-60 genomeSize=4.8m -pacbio-raw ecoli_filtered_0.60.fastq saveReads=true 2>CanuRun60_20191023.log
+  210  cd ..
+  211  canu -p ecoli -d ecoli-60 genomeSize=4.8m -pacbio-raw ecoli_filtered_0.60.fastq saveReads=true 2>CanuRun60_20191023.log
+  212  ls
+  213  cd ecoli-60/
+  214  ls
+  215  grep -c ">" ecoli.unitigs.fasta 
+  216  vi ecoli.report 
+  217  cd PFB2019_KMH/ProgrammingForBiologyCourse2019/problemsets/workshops/
+  218  wget https://raw.githubusercontent.com/prog4biol/pfb2019/master/workshops/GenomeAssembly/ecoli_0.25.contigs.fasta
+  219  head -3 ecoli_0.25.contigs.fasta 
+  220  head  ecoli_0.25.contigs.fasta 
+  221  vi basicQCGenomeReads.py
+  243  wc - ecoli_0.25.contigs.fasta 
+  244  wc -l ecoli_0.25.contigs.fasta 
+  245  grep -c '>'
+  246  grep -c '>' ecoli_0.25.contigs.fasta 
+  247  python3 basicQCGenomeReads.py 
+  248  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  249  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  250  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  251  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  252  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  253  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  254  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  255  git add basicQCGenomeReads.py 
+  256  git commit -m "find L50 and N50"
+  257  git push
+  258  git status
+  259  python3 basicQCGenomeReads.py ecoli_0.25.contigs.fasta 
+  260  git add basicQCGenomeReads.py 
+  261  git commit -m "minor fixes to gemome qc"
+  262  git push
+  296  ls
+  7  git push
+  388  git commit -m "makes the dictionary and set combo"
+  
+  
+  
+  
+# this is how to do the protein annotation with panther api
+
+  503  mkdir ProteinAnnotation
+# new directory from info:
+504  cd ProteinAnnotation/
+# don't clone subdirectory in another git space.
+  505  git clone https://github.com/pantherdb/pantherapi-pyclient.git
+  506  ls
+  507  cd pantherapi-pyclient/
+  508  ls
+  509  curl -X POST "http://panthertest3.med.usc.edu:8083/services/oai/pantherdb/geneinfo?geneInputList=Q13002&organism=9606" -H "accept: application/json"
+  510  ls
+  511  python3 -m venv env
+  512  . env/bin/activate 
+  513  pip install -r requirements.txt
+  514  cd params
+  515  ls
+  516  cat enrich.json
+  517  cd ..
+  518  more params/enrich.json # view the files
+  519  more params/geneinfo.json 
+  520  ls
+  521  cd ..
+  522  ls
+  523  cd..
+  524  cd ..
+  525  ls
+  526  cd ProteinAnnotation/pantherapi-pyclient/
+  527  ls
+  528  vi pthr_go_annots.py 
+  529  vi requirements.txt 
+  536  cd params/
+  538  cd ..
+  545  cd resources/
+  548  cd ..
+  # the file runs on python3 
+  # then file name
+  # then service, I chose enrich
+  # then the params file for enrich
+  # then the sequence ID file, 
+  # don't forget to save as an output file
+  551  python3 pthr_go_annots.py --service enrich --params_file params/enrich.json --seq_id_file resources/test_ids.txt >test_enrich_output.txt
+  552  vi test_enrich_output.txt 
+  553  history > panter_proteinDB.txt
