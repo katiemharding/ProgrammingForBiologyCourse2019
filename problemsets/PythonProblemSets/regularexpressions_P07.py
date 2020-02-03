@@ -3,7 +3,7 @@
 import re
 import sys
 
-def find_line(expression, text):
+def find_line(expression, old_text, new_text):
 	line_list = [] # create empty list to store line marker
 	line_count = 0
 	with open(text, "r") as new_text:
@@ -12,17 +12,20 @@ def find_line(expression, text):
 			found = re.findall(expression, line)
 			if len(found) >0:
 				line_list.append(line_count)
+				line.replace(old_text, new_text)
+				print(line)
 				line_count += 1 # each line gets a count
 			else:
 				line_count += 1 # each line gets a count
 	return(line_list)
 
 if __name__ == '__main__':
-	if len(sys.argv) < 3:
+	if len(sys.argv) < 4:
 		print("please add expression and text to search")
 		exit(1)
 	expression = sys.argv[1]
-	text = sys.argv[2]
+	text1 = sys.argv[2]
+	text2 = sys.argv[3]
 	output = find_line(expression, text)
 	print("matches found: ", output)
 	print("how many found: ", len(output))
