@@ -7,12 +7,12 @@ def find_line(expression, text):
 	line_list = [] # create empty list to store line marker
 	line_count = 0
 	with open(text, "r") as new_text:
-	for rawline in new_text:
-		line = rawline.rstrip()
-		found = re.findall(expression, line)
-		line_count =+1 # each line gets a count
-		if found >0:
-			line_list.append(line_count)
+		for rawline in new_text:
+			line = rawline.rstrip()
+			found = re.findall(expression, line)
+			line_count =+1 # each line gets a count
+			if len(found) >0:
+				line_list.append(line_count)
 	return(line_list)
 
 if __name__ == '__main__':
