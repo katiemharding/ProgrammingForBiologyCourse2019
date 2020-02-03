@@ -3,9 +3,17 @@
 import re
 import sys
 
-def find_text(expression, text):
-	found = re.findall(expression, text)
-	return(found)
+def find_line(expression, text):
+	line_list = [] # create empty list to store line marker
+	line_count = 0
+	with open(text, "r") as new_text:
+	for rawline in new_text:
+		line = rawline.rstrip()
+		found = re.findall(expression, line)
+		line_count =+1 # each line gets a count
+		if found >0:
+			line_list.append(line_count)
+	return(line_list)
 
 if __name__ == '__main__':
 	if len(sys.argv) < 3:
@@ -13,6 +21,6 @@ if __name__ == '__main__':
 		exit(1)
 	expression = sys.argv[1]
 	text = sys.argv[2]
-	output = find_text(expression, text)
+	output = find_line(expression, text)
 	print("matches found: ", output)
 	print("how many found: ", len(output))
