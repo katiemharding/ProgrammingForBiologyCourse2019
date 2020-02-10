@@ -12,12 +12,12 @@ def find_line(expression, replacement, text):
 			found = re.findall(expression, line)
 			if len(found) >0:
 				line_list.append(line_count)
-				line.replace(expression, replacement)
+				line.replace(expression, replacement) # this doesn't work.  
 				print(line)
 				line_count += 1 # each line gets a count
 			else:
 				line_count += 1 # each line gets a count
-	return(line_list)
+	return(line_list) # Line list is the location of each text.  
 
 if __name__ == '__main__':
 	if len(sys.argv) < 4:
