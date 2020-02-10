@@ -6,7 +6,7 @@ import sys
 def find_line(expression, replacement, text):
 	line_list = [] # create empty list to store line marker
 	line_count = 0
-	new_text = replacement + text # give the new file a name
+	new_text = replacement + "_" + str(text) # give the new file a name
 	new_file = open(new_text , "w")
 	with open(text, "r") as new_text:
 		for rawline in new_text:
@@ -14,13 +14,14 @@ def find_line(expression, replacement, text):
 			found = re.findall(expression, line)
 			if len(found) >0:
 				line_list.append(line_count)
-				new_file.write(line.replace(expression, replacement)) # add the line.  
+				new_file.write((line.replace(expression, replacement) + "\n")) 
+				# add the line. add return to put next on new line  
 				line_count += 1 # each line gets a count
 			else:
 				line_count += 1 # each line gets a count
-				new_file.write(line)
+				new_file.write((line + "\n"))
 	new_file.close()
-	print("Wrote to file:", new_file) # it's nice to tell the user you wrote a file
+	print("Wrote to file:", str(new_file)) # it's nice to tell the user you wrote a file
 	return(line_list) # Line list is the location of each text.  
 
 if __name__ == '__main__':
