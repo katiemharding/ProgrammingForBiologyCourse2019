@@ -7,7 +7,7 @@ def find_line(expression, replacement, text):
 	line_list = [] # create empty list to store line marker
 	line_count = 0
 	new_file_name = replacement + "_" + text # give the new file a name
-	new_file = open(new_file_name , "w")
+	new_file = open(new_file_name , "w") # this will save the new file with changes
 	with open(text, "r") as new_text:
 		for rawline in new_text:
 			line = rawline.rstrip()
@@ -20,7 +20,7 @@ def find_line(expression, replacement, text):
 			else:
 				line_count += 1 # each line gets a count
 				new_file.write((line + "\n"))
-	new_file.close()
+	new_file.close() # the with open statement closes the file.  the open(file) needs to be closed
 	print("Wrote to file: ", str(new_file_name)) # it's nice to tell the user you wrote a file
 	return(line_list) # Line list is the location of each text.  
 
